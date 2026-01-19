@@ -1,1 +1,8 @@
-test.py
+#data output from raw data and preprocessing
+data_preprocess/
+
+#虛擬環境
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
