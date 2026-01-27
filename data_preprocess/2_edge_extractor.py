@@ -1,3 +1,4 @@
+# 此程式用於從過濾後的元資料中提取商品之間的相似和相關邊，並計算每條邊的權重。
 import sys
 from collections import defaultdict
 

@@ -1,14 +1,15 @@
 import json
 import sys
 
-
+#為每個節點分配唯一的數字 ID
 def assign_num_id(u, node_to_num_id): 
-  """為每個節點分配唯一的數字 ID"""
+  """為節點 u 分配唯一的數字 ID"""
   if u not in node_to_num_id:
     node_to_num_id[u] = len(node_to_num_id)
   return node_to_num_id[u]
 
-
+#初始化節點結構。
+#返回：包含節點資訊的字典，包括節點 ID、類型、權重、鄰居和邊
 def init_node(num_id):
     """
     初始化節點結構。
@@ -26,12 +27,12 @@ def init_node(num_id):
         "edge":[]
     }
 
-
+#將鄰接節點 v 新增到節點 u 的指定邊類型鄰接表中
 def add_neighbor(u, v, edge_type, node_data):
     """將鄰接節點 v 新增到節點 u 的指定邊類型鄰接表中"""
     node_data[u]['neighbor'][str(edge_type)].append(v)
 
-
+#將邊資訊新增到源節點 u 的邊列表中
 def add_edge(u, v, edge_type, node_data):
   """將邊資訊新增到源節點 u 的邊列表中"""
   uv_edge = {
@@ -42,7 +43,7 @@ def add_edge(u, v, edge_type, node_data):
   }
   node_data[u]['edge'].append(uv_edge)
 
-
+#為有效的節點填充特徵資訊（分類、價格）。
 def fill_node_features(node_data, node_to_num_id, valid_node_asin):
   """
   為有效的節點填充特徵資訊（分類、價格）。
@@ -89,6 +90,7 @@ def fill_node_features(node_data, node_to_num_id, valid_node_asin):
   print(feature_stats)
   log_file.write(feature_stats + '\n')
 
+# 將價格字串轉換為浮點數（移除貨幣符號）
 def price_string(price):
   """將價格字串轉換為浮點數（移除貨幣符號）"""
   price = price[1:]
